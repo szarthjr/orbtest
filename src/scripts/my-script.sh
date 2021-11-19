@@ -1,1 +1,1 @@
-echo Hello "${PARAM}"
+echo Hello "${PARAM_TEST}"

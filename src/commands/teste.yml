@@ -7,7 +7,7 @@ parameters:
     description: "teste"
 steps:
   - run:
-    environment:
-      PARAM_TEST: <<parameters.env_var>>
-    name: exemplo
-    command: <<include(scripts/my-script.sh)>>
+      environment:
+        PARAM_TEST: <<parameters.env_var>>
+      name: exemplo
+      command: <<include(scripts/my-script.sh)>>

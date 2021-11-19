@@ -1,0 +1,13 @@
+description: >
+  This command echos "Teste" using file inclusion.
+parameters:
+  env_var:
+    type: string
+    default: "Teste"
+    description: "teste"
+steps:
+  - run:
+      environment:
+        PARAM_TEST: <<parameters.env_var>>
+      name: exemplo
+      command: <<include(scripts/my-script.sh)>>

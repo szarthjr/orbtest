@@ -1,0 +1,11 @@
+description: >
+  Sample description
+executor: default
+parameters:
+  env_var:
+    type: string
+    default: "Teste Job"
+    description: "helloooo"
+steps:
+  - teste:
+      env_var: << parameters.env_var >>

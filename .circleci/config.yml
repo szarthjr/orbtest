@@ -58,6 +58,7 @@ workflows:
   # It is meant to be triggered by the "trigger-integration-tests-workflow"
   # job, and run tests on <your orb>@dev:${CIRCLE_SHA1:0:7}.
   integration-test_deploy:
+    when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
       # Publish a semver version of the orb. relies on

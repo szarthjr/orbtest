@@ -1,0 +1,11 @@
+parameters:
+  env_var:
+    type: env_var_name
+    default: "Teste"
+
+steps:
+  - run:
+    environment:
+      PARAM: <<parameters.env_var>>
+    name: exemplo
+    command: <<include(scripts/my-script.sh)>>

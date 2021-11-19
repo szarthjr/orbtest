@@ -1,11 +1,9 @@
+executor: default
 parameters:
   env_var:
     type: env_var_name
-    default: "Teste"
+    default: "Teste Job"
 
 steps:
-  - run:
-    environment:
-      PARAM: <<parameters.env_var>>
-    name: Exemplo Parametros Orb
-    command: <<include(scripts/my-script.sh)>>
+  - teste:
+      env_var: << parameters.env_var >>

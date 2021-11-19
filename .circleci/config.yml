@@ -67,6 +67,7 @@ workflows:
       # version will be published or if publishing should
       # be skipped.
       # e.g. [semver:patch] will cause a patch version to be published.
+      - integration-test-1
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: szarthjr/orbtest
           context: orb-publishing

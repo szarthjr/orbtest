@@ -11,6 +11,6 @@ parameters:
 steps:
   - run:
     environment:
-      PARAM_TO: <<parameters.env_var>>
+      PARAM: <<parameters.env_var>>
     name: Exemplo Parametros Orb
     command: <<include(scripts/my-script.sh)>>

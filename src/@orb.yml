@@ -4,7 +4,7 @@ description: >
   Sample orb description
 
 parameters:
-  env_var: 
+  env_var:
     type: env_var_name
     default: "Teste"
 

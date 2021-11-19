@@ -2,15 +2,3 @@ version: 2.1
 
 description: >
   Sample orb description
-
-parameters:
-  env_var:
-    type: env_var_name
-    default: "Teste"
-
-steps:
-  - run:
-    environment:
-      PARAM: <<parameters.env_var>>
-    name: Exemplo Parametros Orb
-    command: <<include(scripts/my-script.sh)>>

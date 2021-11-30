@@ -10,6 +10,5 @@ steps:
       name: kubeconfig
       command: |
         echo $KUBE_CONF > config
-        echo $KUBE_CONF
         kubectl version --client
-        kubectl get pods --kubeconfig=config -A
+        kubectl get pods --kubeconfig config

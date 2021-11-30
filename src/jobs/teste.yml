@@ -1,11 +1,15 @@
 description: >
   Sample description
 executor: default
-parameters:
-  env_var:
-    type: string
-    default: "Teste Job"
-    description: "helloooo"
 steps:
-  - teste:
-      env_var: << parameters.env_var >>
+  - checkout
+  - run:
+      name: install kubectl
+      command: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  - run:
+      name: kubeconfig
+      command: |
+        echo $KUBE_CONF > config
+        echo $KUBE_CONF
+        kubectl version --client
+        kubectl get pods --kubeconfig=config -A

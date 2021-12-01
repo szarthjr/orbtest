@@ -1,9 +1,9 @@
 description: This command get cluster crendentials.
+
 parameters:
   cluster:
     description: The name of the cluster for which to create a kubeconfig entry.
-    type: env_var_name
-    default: CLUSTER_NAME
+    type: string
 
 steps:
   - run:

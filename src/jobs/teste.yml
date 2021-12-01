@@ -1,4 +1,4 @@
-description: Sample description
+description: main pipeline
 executor: default
 
 parameters:
@@ -32,12 +32,19 @@ parameters:
     type: string
 
 steps:
-  - install:
-      gcloud_version: <<parameters.gcloud_version>>
-  - initialize:
+  - kubernetes/install-kubectl
+  - gcp-cli//install_and_initialize_cli:
       gcloud-service-key: <<parameters.gcloud-service-key>>
       google-project-id: <<parameters.google-project-id>>
       google-compute-zone: <<parameters.google-compute-zone>>
       google-compute-region: <<parameters.google-compute-region>>
+
+  - install:
+      gcloud_version: <<parameters.gcloud_version>>
   - connect:
       cluster: <<parameters.cluster>>
+  # - initialize:
+  #     gcloud-service-key: <<parameters.gcloud-service-key>>
+  #     google-project-id: <<parameters.google-project-id>>
+  #     google-compute-zone: <<parameters.google-compute-zone>>
+  #     google-compute-region: <<parameters.google-compute-region>>

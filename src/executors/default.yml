@@ -1,5 +1,4 @@
-description: >
-  This is a sample executor.
+description: main executor
 
 machine:
   image: ubuntu-1604:202007-01

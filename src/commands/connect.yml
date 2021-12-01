@@ -7,11 +7,11 @@ parameters:
 
 steps:
   - run:
-      name: list clusters
+      name: List clusters
       command: gcloud container clusters list
   - run:
-      name: get credentials
+      name: Get credentials
       command: gcloud container clusters get-credentials <<parameters.cluster>>
   - run:
-      name: kubeconfig
+      name: Kubeconfig
       command: kubectl get pods -A

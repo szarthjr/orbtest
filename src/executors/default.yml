@@ -2,7 +2,3 @@ description: >
   This is a sample executor.
 docker:
   - image: 'ubuntu-2004:202010-01'
-parameters:
-  tag:
-    default: lts
-    type: string

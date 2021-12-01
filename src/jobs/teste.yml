@@ -1,5 +1,4 @@
-description: >
-  Sample description
+description: Sample description
 executor: default
 
 parameters:
@@ -27,7 +26,7 @@ parameters:
     description: The Google compute region to connect with via the gcloud CLI
     type: env_var_name
     default: GOOGLE_COMPUTE_REGION
-  
+
   cluster:
     description: The name of the cluster for which to create a kubeconfig entry.
     type: string

@@ -1,0 +1,55 @@
+description: "Initilize the gcloud CLI."
+
+parameters:
+  gcloud-service-key:
+    type: env_var_name
+    default: GCLOUD_SERVICE_KEY
+    description: |
+      Name of environment variable storing the full service key JSON file
+      for the Google project.
+
+  google-project-id:
+    type: env_var_name
+    default: GOOGLE_PROJECT_ID
+    description: |
+      Name of environment variable storing the Google project ID to set as
+      default for the gcloud CLI.
+
+  google-compute-zone:
+    type: env_var_name
+    default: GOOGLE_COMPUTE_ZONE
+    description: |
+      Name of environment variable storing the Google compute zone to set as
+      default for the gcloud CLI.
+
+  google-compute-region:
+    type: env_var_name
+    default: GOOGLE_COMPUTE_REGION
+    description: |
+      Name of environment variable storing the Google compute region to set as
+      default for the gcloud CLI
+
+steps:
+  - orb-tools/check-env-var-param:
+      command-name: Checking whether required env vars are set to initialize gcloud CLI...
+      param: <<parameters.gcloud-service-key>>,<<parameters.google-project-id>>
+
+  - run:
+      name: Initialize gcloud CLI to connect to Google Cloud
+      command: |
+        # Store service account
+        echo $<<parameters.gcloud-service-key>> > ${HOME}/gcloud-service-key.json
+
+        # Initialize gcloud CLI
+        gcloud --quiet config set core/disable_usage_reporting true
+        gcloud --quiet config set component_manager/disable_update_check true
+        gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+        gcloud --quiet config set project $<<parameters.google-project-id>>
+
+        if [[ -n $<<parameters.google-compute-zone>> ]]; then
+          gcloud --quiet config set compute/zone $<<parameters.google-compute-zone>>
+        fi
+
+        if [[ -n $<<parameters.google-compute-region>> ]]; then
+          gcloud --quiet config set compute/region $<<parameters.google-compute-region>>
+        fi

@@ -1,0 +1,31 @@
+description: "Install gcloud cli and kubectl"
+
+parameters:
+  gcloud_version:
+    type: string
+    default: "363.0.0"
+
+steps:
+  - run:
+      name: Install latest gcloud CLI version, if not available
+      command: |
+        install () {
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+          cd ~/
+          curl -Ss --retry 5 https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-<<parameters.gcloud_version>>-linux-x86_64.tar.gz | tar xz
+          echo 'source ~/google-cloud-sdk/path.bash.inc' >> $BASH_ENV
+        }
+
+        if grep 'docker\|lxc' /proc/1/cgroup > /dev/null 2>&1; then
+          if [[ $(command -v gcloud) == "" ]]; then
+            install
+          else
+            echo "gcloud CLI is already installed."
+          fi
+        else
+          sudo rm -rf /opt/google-cloud-sdk
+          install
+        fi
+  - run:
+      name: install kubectl
+      command: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl

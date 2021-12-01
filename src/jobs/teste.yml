@@ -2,10 +2,9 @@ description: main pipeline
 executor: default
 
 parameters:
-  gcloud_version:
+  cluster:
+    description: The name of the cluster for which to create a kubeconfig entry.
     type: string
-    default: "363.0.0"
-    description: "Version of the CLI to install. Must contain the full version number as it appears in the URL on this page: https://cloud.google.com/sdk/docs/downloads-versioned-archives"
 
   gcloud-service-key:
     description: The gcloud service key
@@ -27,24 +26,13 @@ parameters:
     type: env_var_name
     default: GOOGLE_COMPUTE_REGION
 
-  cluster:
-    description: The name of the cluster for which to create a kubeconfig entry.
-    type: string
-
 steps:
   - kubernetes/install-kubectl
-  - gcp-cli//install_and_initialize_cli:
+  - gcp-cli/install
+  - gcp-cli/initialize:
       gcloud-service-key: <<parameters.gcloud-service-key>>
       google-project-id: <<parameters.google-project-id>>
       google-compute-zone: <<parameters.google-compute-zone>>
       google-compute-region: <<parameters.google-compute-region>>
-
-  - install:
-      gcloud_version: <<parameters.gcloud_version>>
   - connect:
       cluster: <<parameters.cluster>>
-  # - initialize:
-  #     gcloud-service-key: <<parameters.gcloud-service-key>>
-  #     google-project-id: <<parameters.google-project-id>>
-  #     google-compute-zone: <<parameters.google-compute-zone>>
-  #     google-compute-region: <<parameters.google-compute-region>>

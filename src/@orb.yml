@@ -2,3 +2,6 @@ version: 2.1
 
 description: >
   Sample orb description
+
+orbs:
+  orb-tools: circleci/orb-tools@9.3.1

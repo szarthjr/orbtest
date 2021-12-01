@@ -34,7 +34,7 @@ parameters:
 
 steps:
   - install:
-      version: <<parameters.gcloud_version>>
+      gcloud_version: <<parameters.gcloud_version>>
   - initialize:
       gcloud-service-key: <<parameters.gcloud-service-key>>
       google-project-id: <<parameters.google-project-id>>

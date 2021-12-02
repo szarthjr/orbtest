@@ -1,0 +1,11 @@
+description: Colocar uma descrição legal
+
+steps:
+  - run:
+      command: env | sort >> variables.env
+  - run:
+      command: sed -r 's/ç/c/g;s/é/e/g;s/ã/a/g;s/\s+//g;s/#/-/g' variables.env >> env.env
+  - run:
+      command: sed '/Relatedworkitems/d' -i env.env
+  - run:
+      command: sed '/^-/d' -i env.env

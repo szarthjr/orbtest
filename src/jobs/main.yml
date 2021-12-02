@@ -29,10 +29,13 @@ parameters:
 steps:
   - kubernetes/install-kubectl
   - gcp-cli/install
+  - helm/install-helm-client:
+      version: 'v3.4.2'
   - gcp-cli/initialize:
       gcloud-service-key: <<parameters.gcloud-service-key>>
       google-project-id: <<parameters.google-project-id>>
       google-compute-zone: <<parameters.google-compute-zone>>
       google-compute-region: <<parameters.google-compute-region>>
-  - connect:
+  - get-cluster-credentials:
       cluster: <<parameters.cluster>>
+  - set-variables

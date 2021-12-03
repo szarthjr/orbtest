@@ -6,6 +6,7 @@
 * [kubernetes: circleci/kubernetes@0.12.1](https://circleci.com/developer/orbs/orb/circleci/kubernetes)
 * [gcp-cli: circleci/gcp-cli@2.4.0](https://circleci.com/developer/orbs/orb/circleci/gcp-cli)
 * [helm: circleci/helm@1.2.0](https://circleci.com/developer/orbs/orb/circleci/helm)
+* [node: circleci/node@4.8.0](https://circleci.com/developer/orbs/orb/circleci/node)
 
 ## Pack e publicação (desenvolvimento)
 

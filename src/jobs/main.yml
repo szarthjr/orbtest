@@ -31,6 +31,8 @@ steps:
   - gcp-cli/install
   - helm/install-helm-client:
       version: 'v3.4.2'
+  - node/install:
+      install-yarn: true
   - gcp-cli/initialize:
       gcloud-service-key: <<parameters.gcloud-service-key>>
       google-project-id: <<parameters.google-project-id>>
